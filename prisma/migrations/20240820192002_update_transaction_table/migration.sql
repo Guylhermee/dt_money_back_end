@@ -1,4 +1,4 @@
--- CreateTable
+-- UpdateTable
 CREATE TABLE "transactions" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
