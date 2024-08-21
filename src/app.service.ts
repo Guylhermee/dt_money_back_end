@@ -26,29 +26,6 @@ export class AppService {
     return createdTransaction;
   }
 
-  async getTransaction() {
-    const transactions = await this.prismaService.transaction.findMany({
-      orderBy: {
-        createdAt: 'asc',
-      },
-    });
-    return transactions;
-  }
-
-  async getTransactionById(id: string) {
-    const transaction = await this.prismaService.transaction.findUnique({
-      where: {
-        id: id,
-      },
-    });
-
-    if (!transaction) {
-      throw new NotFoundException(`Transaction with ID ${id} not found`);
-    }
-
-    return transaction;
-  }
-
   async updateTransaction(id: string, data: UpdateTransactionDTO) {
     const updatedTransaction = await this.prismaService.transaction.update({
       where: {
@@ -79,6 +56,29 @@ export class AppService {
     });
 
     return deletedTransaction;
+  }
+
+  async getTransaction() {
+    const transactions = await this.prismaService.transaction.findMany({
+      orderBy: {
+        createdAt: 'asc',
+      },
+    });
+    return transactions;
+  }
+
+  async getTransactionById(id: string) {
+    const transaction = await this.prismaService.transaction.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!transaction) {
+      throw new NotFoundException(`Transaction with ID ${id} not found`);
+    }
+
+    return transaction;
   }
 
   async getDashboard() {
